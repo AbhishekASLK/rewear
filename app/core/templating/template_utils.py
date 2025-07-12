@@ -51,26 +51,9 @@ def guess_base_template(template_path: str) -> str | None:
                 return None
     return None
 
-# Template Rendering Entry Point
-
 def render(template_path: str, request: Request, context: dict) -> HTMLResponse:
     context["request"] = request
-
-    apply_module_locale(env, template_path, request)
-
-    if request.headers.get("hx-request") == "true":
-        return templates.TemplateResponse(template_path, context)
-
-    if template_path.endswith("_base.html"):
-        raise ValueError(f"❌ Refusing to inject layout template directly: {template_path}")
-
-    base_template = guess_base_template(template_path)
-    if base_template:
-        context["content_template"] = template_path
-        return templates.TemplateResponse(base_template, context)
-
     return templates.TemplateResponse(template_path, context)
-
 
 def render_to_string(template_name: str, request: Request, context: dict) -> str:
     return templates.get_template(template_name).render(context)
