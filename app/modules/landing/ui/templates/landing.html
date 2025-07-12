@@ -1,0 +1,71 @@
+
+<header class="bg-orange-500 border-b border-gray-300 p-4">
+  <div class="flex items-center justify-between">
+
+    <!-- Left Section: Logo -->
+    <div class="flex items-center gap-2">
+      <div class="text-4xl font-bold text-pink-400">ReWear</div>
+    </div>
+
+    <!-- Right Section: Toggle + User Info -->
+    <div class="flex items-center gap-4">
+      <!-- Dark Mode Toggle -->
+      <button @click="dark = !dark; localStorage.theme = dark ? 'dark' : 'light'" class="btn-ghost">
+        Toggle Dark
+      </button>
+
+      <!-- User Info -->
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium text-white">John Doe</span>
+        <img src="https://via.placeholder.com/40" alt="User Photo" class="w-10 h-10 rounded-full border border-gray-300" />
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- Search Section -->
+<section class="p-6">
+<div class="w-full max-w-2xl mx-auto h-12 bg-gray-100 rounded flex items-center px-4 mb-6">
+    <input type="text" placeholder="Search for clothes, categories..." class="bg-transparent w-full text-gray-800 placeholder-gray-500 focus:outline-none" />
+    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1011 18.5a7.5 7.5 0 005.65-1.85z"></path>
+    </svg>
+</div>
+</section>
+
+<!-- Hero Images Section -->
+<section class="p-6">
+<h2 class="text-xl mb-4">Images</h2>
+<div class="bg-gray-100 rounded-lg h-40 flex items-center justify-center text-gray-700 font-medium mb-6">placeholder</div>
+</section>
+
+<!-- Categories Section -->
+<section class="p-6">
+<div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl">Categories Section</h2>
+    <span class="text-sm text-gray-500">Diligent Octopus</span>
+</div>
+<div class="grid grid-cols-3 gap-4">
+    <div class="h-24 bg-gray-100 rounded"></div>
+    <div class="h-24 bg-gray-100 rounded"></div>
+    <div class="h-24 bg-gray-100 rounded"></div>
+    <div class="h-24 bg-gray-100 rounded"></div>
+    <div class="h-24 bg-gray-100 rounded"></div>
+    <div class="h-24 bg-gray-100 rounded"></div>
+</div>
+</section>
+
+<!-- Product Listings Section -->
+<section class="p-6">
+<div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl">Product Listings</h2>
+    <span class="text-sm text-gray-500">Glorious Cormorant</span>
+</div>
+<div class="grid grid-cols-4 gap-4">
+    <div class="h-48 bg-gray-100 rounded flex items-center justify-center text-gray-700 font-medium">Respectful Hedgehog</div>
+    <div class="h-48 bg-gray-100 rounded"></div>
+    <div class="h-48 bg-gray-100 rounded"></div>
+    <div class="h-48 bg-gray-100 rounded flex items-end justify-end p-2 text-gray-600 font-medium">Minty Alpaca</div>
+</div>
+</section>
