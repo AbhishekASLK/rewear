@@ -1,0 +1,49 @@
+{% macro tabs(
+id="tabs",
+tabs=[],
+selected=0,
+size="md",
+variant="ghost",
+extra_classes="",
+content_id=None,
+attrs={}
+) %}
+{% set content_id = content_id or id ~ "-content" %}
+{% set size_map = {
+"sm": "text-sm px-3 py-1.5",
+"md": "text-base px-4 py-2",
+"lg": "text-lg px-5 py-3"
+} %}
+{% set variant_map = {
+"ghost": "",
+"underline": "border-b-2",
+"solid": "bg-[var(--muted)] rounded-[var(--radius)]"
+} %}
+
+<div id="{{ id }}" x-data="{ selected: {{ selected }} }" role="tablist"
+  class="flex flex-col space-y-4 {{ extra_classes }}" {{ attrs|xmlattr }}>
+
+  {# Tab Navigation #}
+  <div class="flex overflow-x-auto gap-2 no-scrollbar">
+    {% for tab in tabs %}
+    <button type="button" role="tab" :aria-selected="selected === {{ loop.index0 }}"
+      @click="selected = {{ loop.index0 }}" hx-get="{{ tab.url }}" hx-target="#{{ content_id }}" hx-swap="innerHTML"
+      :class="selected === {{ loop.index0 }}
+            ? 'text-[var(--primary)] border-[var(--accent)] border rounded-md'
+            : 'text-[var(--muted-foreground)] hover:text-[var(--foreground)] border-transparent'"
+      class="transition-colors whitespace-nowrap focus:outline-none {{ size_map[size] }} {{ variant_map[variant] }}">
+      {{ _(tab.label) }}
+    </button>
+    {% endfor %}
+  </div>
+
+  {# Tab Content #}
+  <div id="{{ content_id }}" role="tabpanel" tabindex="0"
+    class="flex flex-col justify-between h-full rounded-[var(--radius)] border border-[var(--border)] bg-[var(--card)] p-4 text-[var(--card-foreground)] transition-all">
+    {{ tabs[selected].content | safe }}
+  </div>
+
+
+
+</div>
+{% endmacro %}

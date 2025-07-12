@@ -1,0 +1,67 @@
+{# app/core/ui/components/input.html #}
+{% from "icon.html" import icon as render_icon %}
+
+{% macro input(
+  name,
+  label        = "",
+  type         = "text",
+  value        = "",
+  placeholder  = "",
+  icon_name    = "",
+  icon_path    = None,
+  help_text    = "",
+  error        = "",
+  disabled     = false,
+  required     = false,
+  extra_classes= "",
+  attrs        = {}
+) %}
+  {% set base   = "block w-full rounded border px-3 py-2 text-sm focus:outline-none focus:ring" %}
+  {% set lbl    = "block text-sm font-medium mb-1" %}
+  {% set errc   = "text-xs text-red-600 mt-1" %}
+  {% set helpc  = "text-xs text-gray-500 mt-1" %}
+
+  <div class="mb-4">
+    {% if label %}
+      <label for="{{ name }}" class="{{ lbl }}">
+        {{ label }}{% if required %}<span class="text-red-600">*</span>{% endif %}
+      </label>
+    {% endif %}
+
+    <div class="relative">
+      {% if icon_name %}
+        <div class="absolute left-2 top-2 pointer-events-none">
+          {{ render_icon(name=icon_name, path=icon_path, size="1rem") }}
+        </div>
+        {% set base = base ~ " pl-8" %}
+      {% endif %}
+
+      <input
+        type="{{ type }}"
+        id="{{ name }}"
+        name="{{ name }}"
+        value="{{ value }}"
+        placeholder="{{ placeholder }}"
+        class="{{ base }} {{ extra_classes }}"
+        {% if required %} required {% endif %}
+        {% if disabled %} disabled {% endif %}
+        {{ attrs|xmlattr }}
+      />
+    </div>
+
+    {# server‐error override #}
+    {% if error %}
+      <div class="{{ errc }}">{{ error }}</div>
+
+    {# help text override #}
+    {% elif help_text %}
+      <div class="{{ helpc }}">{{ help_text }}</div>
+
+    {# Alpine‐driven errors #}
+    {% else %}
+      <div x-show="errors['{{ name }}']" class="{{ errc }}">
+        <span x-text="errors['{{ name }}']"></span>
+      </div>
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+Jinja2
+pydantic-settings
+itsdangerous
+polib
+asyncpg
+sqlalchemy
+psycopg
+passlib
+bcrypt
