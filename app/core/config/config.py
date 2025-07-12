@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     MODULES_DIR: Path = APP_DIR / "modules"
     DATA_DIR: Path = APP_DIR / "data"
 
-    ENABLED_MODULES: list[str] = ["landing"]  # Add the modules you want to enable for static files. here
+    ENABLED_MODULES: list[str] = ["landing","auth"]  # Add the modules you want to enable for static files. here
 
     @property
     def STATIC_DIRS(self) -> list[Path]:

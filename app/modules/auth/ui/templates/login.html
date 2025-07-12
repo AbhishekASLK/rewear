@@ -1,0 +1,58 @@
+{% extends "auth_base.html" %}
+
+{% block auth_content %}
+
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-lg fade-in">
+    <!-- Profile icon placeholder -->
+    <div class="flex flex-col items-center mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-green-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 20.042A8 8 0 0112 16a8 8 0 019.542 4.042" />
+      </svg>
+      <h2 class="text-3xl font-semibold text-gray-700">Welcome Back</h2>
+      <p class="text-sm text-gray-500">Login to ReWear and start swapping</p>
+    </div>
+
+    <!-- Login Form -->
+    <form hx-post="/api/login" hx-target="#content" hx-swap="innerHTML" class="space-y-6">
+      <input type="text" name="username" placeholder="Username" required
+             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out"/>
+
+      <input type="password" name="password" placeholder="Password" required
+             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-300 ease-in-out"/>
+
+      <button type="submit"
+              class="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+        Login
+      </button>
+
+      <!-- Google Social Login Button -->
+      <a href="/auth/google" class="mt-4 flex items-center justify-center w-full py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition duration-300">
+        <svg class="w-6 h-6 mr-2" viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg">
+          <path fill="#4285F4" d="M533.5 278.4c0-18.5-1.5-36.3-4.3-53.6H272v101.4h146.9c-6.3 34-25.4 62.8-54.3 82v68h87.7c51.3-47.3 81.2-116.8 81.2-197.8z"/>
+          <path fill="#34A853" d="M272 544.3c73.7 0 135.6-24.4 180.8-66.1l-87.7-68c-24.4 16.3-55.7 26-93.1 26-71.5 0-132-48.3-153.6-113.1H29.6v70.9c45.1 89.1 137.3 150.3 242.4 150.3z"/>
+          <path fill="#FBBC05" d="M118.4 323.1c-10.7-31.7-10.7-65.9 0-97.6v-70.9H29.6c-38.6 75.7-38.6 165.9 0 241.6l88.8-73.1z"/>
+          <path fill="#EA4335" d="M272 107.7c39.9 0 75.7 13.7 104 40.7l78-78C405.6 24.4 343.7 0 272 0 166.9 0 74.7 61.2 29.6 150.3l88.8 70.9c21.6-64.8 82.1-113.5 153.6-113.5z"/>
+        </svg>
+        Login with Google
+      </a>
+    </form>
+
+    <!-- Register Redirect -->
+    <p class="mt-8 text-sm text-center text-gray-500">
+      Don't have an account?
+      <a href="#" hx-get="/register" hx-target="#content" class="text-green-600 hover:underline">Register here</a>
+    </p>
+  </div>
+
+<style>
+  /* Custom fade-in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in {
+    animation: fadeIn 0.6s ease forwards;
+  }
+</style>
+{% endblock %}
