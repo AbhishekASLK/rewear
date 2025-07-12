@@ -2,18 +2,6 @@
 
 {% block content %}
 
-<div class="bg-[var(--muted-foreground)]/20 min-h-screen flex justify-center items-center border border-[var(--border)]">
+  {% include "landing.html" %}
 
-  <!-- temp theme toggle keep till development is complete-->
-
-  <button @click="dark = !dark; localStorage.theme = dark ? 'dark' : 'light'" class="btn-ghost absolute top-4 right-4">
-    Toggle Dark
-  </button>
-
-  <!-- Content Card -->
-  <div>
-    Heres the landing page code.
-  </div>
-
-</div>
 {% endblock %}
